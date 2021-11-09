@@ -4,6 +4,34 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Proyecto Personajes de Marvel</title>
+
+<script type="text/javascript">
+	
+	url = "http://gateway.marvel.com/v1/public/characters?ts=100&apikey=d8b02dc109d7a677a61793797397e470&hash=51a2fbae7d1e16406c9e6540924c5bcf";
+
+	request = new XMLHttpRequest();
+	request.open("GET",url);
+	request.send();
+
+	request.onload = ()=> {
+
+		json = JSON.parse(request.response);
+		personales = json.data.results;
+
+		for (let i in personales) {
+
+			personaje = personales[i];
+
+ 		 	console.log( i + " " + personaje.name + " " + personaje.description);
+		}
+
+	}
+
+
+</script>
+
+
+
 </head>
 <body>
 
