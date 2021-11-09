@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Proyecto Personajes de Marvel</title>
 
+	<link rel="stylesheet" type="text/css" href="recursos/css/estilocecar.css">
+
 <script type="text/javascript">
 	
 	url = "http://gateway.marvel.com/v1/public/characters?ts=100&apikey=d8b02dc109d7a677a61793797397e470&hash=51a2fbae7d1e16406c9e6540924c5bcf";
@@ -16,13 +18,23 @@
 	request.onload = ()=> {
 
 		json = JSON.parse(request.response);
-		personales = json.data.results;
+		personajes = json.data.results;
 
-		for (let i in personales) {
 
-			personaje = personales[i];
+		for (let i in personajes) {
+			
+			personaje = personajes[i];
+			resultado = '<div class="contenedor_videos">';
+			resultado += '<div class="video">';
+			resultado += '<div class="imagen_video">';
+			resultado += "<img src='https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQgWljUi0tmmXYUsme9SV-fnZkKA>";
+			resultado +='</div>';
+			resultado += '<h3>' + personaje.name +  '</h3>';
+			resultado += '<h3>' + personaje.description +  '</h3>';
+			resultado +='</div>';
 
- 		 	console.log( i + " " + personaje.name + " " + personaje.description);
+			document.write(resultado);
+
 		}
 
 	}
