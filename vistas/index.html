@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Proyecto Personajes de Marvel</title>
 
-	<link rel="stylesheet" type="text/css" href="recursos/css/estilocecar.css">
+	<link rel="stylesheet" type="text/css" href="recursos/css/styles.css">
 
 <script type="text/javascript">
 	
@@ -20,20 +20,40 @@
 		json = JSON.parse(request.response);
 		personajes = json.data.results;
 
+		numeroElementos = 4;
 
 		for (let i in personajes) {
 			
 			personaje = personajes[i];
-			resultado = '<div class="contenedor_videos">';
-			resultado += '<div class="video">';
-			resultado += '<div class="imagen_video">';
-			resultado += "<img src='https://i.annihil.us/u/prod/marvel/i/mg/9/50/57ed5bc9040e3/clean.jpg'>";
-			resultado +='</div>';
-			resultado += '<h3>' + personaje.name +  '</h3>';
-			resultado += '<h3>' + personaje.description +  '</h3>';
-			resultado +='</div>';
 
-			document.write(resultado);
+			if (i % numeroElementos == 0) {
+
+				var divPrincipal = document.createElement("div");
+				divPrincipal.className = "fila";
+
+			}
+
+			var divComic = document.createElement("div");
+			divComic.className = "columna";
+
+			var imagen = document.createElement("img");  
+			imagen.src = "https://i.annihil.us/u/prod/marvel/i/mg/9/50/57ed5bc9040e3/clean.jpg";
+			imagen.className = "imagen";
+
+			var h3 = document.createElement("h3");
+			h3.appendChild(document.createTextNode(personaje.name));
+
+			var h4 = document.createElement("h4");
+			h4.appendChild(document.createTextNode(personaje.description));
+
+			divComic.appendChild(imagen);
+			divComic.appendChild(h3);
+			divComic.appendChild(h4);
+
+			divPrincipal.appendChild(divComic);
+
+			if (i % numeroElementos == 0) 
+				document.body.appendChild(divPrincipal);
 
 		}
 
@@ -46,6 +66,8 @@
 
 </head>
 <body>
+
+
 
 </body>
 </html>
